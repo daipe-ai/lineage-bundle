@@ -1,0 +1,45 @@
+parameters:
+  lineagebundle:
+    notebooks:
+      patterns: ['**/*.py']
+
+services:
+  lineagebundle.notebook.NotebookCreationFacade:
+
+  lineagebundle.notebook.NotebookParser:
+
+  lineagebundle.notebook.NotebooksLocator:
+    arguments:
+      - '%daipe.root_module.path%'
+      - '%lineagebundle.notebooks.patterns%'
+
+  lineagebundle.notebook.LayerResolver:
+    arguments:
+      - '%lineagebundle.notebooks.layer_pattern%'
+
+  lineagebundle.notebook.dag.DagCreator:
+
+  lineagebundle.notebook.dag.Functions2DagMapper:
+
+  lineagebundle.notebook.decorator.DecoratorParserResolver:
+    arguments:
+      - !tagged 'lineage.decorator.parser'
+
+  lineagebundle.notebook.decorator.ArgumentParser:
+
+  lineagebundle.notebook.decorator.function.ArgumentClassResolver:
+    arguments:
+      - !tagged 'lineage.decorator.function.argument_mapping'
+
+  lineagebundle.LineagePublisherCommand:
+    arguments:
+      - '%daipe.root_module.path%'
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
+  lineagebundle.LineagePublisherFacade:
+
+  lineagebundle.pipeline.PipelinesLineageGenerator:
+
+  lineagebundle.pipeline.PipelinesEdgesPreparer:

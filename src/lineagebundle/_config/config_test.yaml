@@ -1,0 +1,26 @@
+parameters:
+  lineagebundle:
+    notebooks:
+      layer_pattern: '^%daipe.root_module.name%/{layer}'
+
+  pysparkbundle:
+    filesystem: dummy_filesystem
+
+  sqlalchemybundle:
+    connections:
+      default:
+        engine: dummy
+        host: 'foo.bar'
+        database: 'mydatabase'
+        username: 'root'
+        password: 'pass123'
+
+services:
+  pysparkbundle.test.DummySparkFactory:
+
+  pyspark.sql.session.SparkSession:
+    factory: [ '@pysparkbundle.test.DummySparkFactory', 'create' ]
+
+  pysparkbundle.filesystem.DummyFilesystem:
+    tags:
+      - {name: 'pysparkbundle.filesystem', alias: dummy_filesystem}
