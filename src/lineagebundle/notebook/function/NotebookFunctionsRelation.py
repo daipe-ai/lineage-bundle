@@ -5,11 +5,11 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import Column, UniqueConstraint, ForeignKey
 from sqlalchemy.types import String, DateTime
 from sqlalchemybundle.entity.Base import Base
-from lineagebundle.pipeline.Notebook import Notebook
+from lineagebundle.notebook.Notebook import Notebook
 
 
-class LineageEdge(Base):
-    __tablename__ = "notebook_lineage_edge"
+class NotebookFunctionsRelation(Base):
+    __tablename__ = "notebook_functions_relation"
     __table_args__ = (UniqueConstraint("source", "target", name="source_target_unique"),)
 
     id = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid4)

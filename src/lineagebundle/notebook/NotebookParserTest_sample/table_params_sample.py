@@ -1,4 +1,5 @@
-from datalakebundle.notebook.decorators import notebook_function, table_params
+from daipecore.decorator.notebook_function import notebook_function
+from datalakebundle.table.parameters.table_params import table_params
 
 
 @notebook_function(

@@ -3,7 +3,7 @@ from sqlalchemy.sql import expression
 from sqlalchemy.orm.session import Session
 from lineagebundle.pipeline.NotebooksRelation import NotebooksRelation
 from lineagebundle.pipeline.PipelinesEdgesPreparer import PipelinesEdgesPreparer
-from lineagebundle.notebook.node.LineageNode import LineageNode
+from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 
 
 class PipelinesLineageGenerator:
@@ -12,10 +12,10 @@ class PipelinesLineageGenerator:
         self.__pipelines_edges_preparer = pipelines_edges_preparer
 
     def generate(self):
-        nodes_with_tables: List[LineageNode] = (
-            self.__orm_session.query(LineageNode)
+        nodes_with_tables: List[NotebookFunction] = (
+            self.__orm_session.query(NotebookFunction)
             .filter(
-                expression.or_(LineageNode.input_table.isnot(None), LineageNode.output_table.isnot(None)),
+                expression.or_(NotebookFunction.input_tables != [], NotebookFunction.output_table.isnot(None)),
             )
             .all()
         )

@@ -92,40 +92,21 @@ pyfony-core = ">=0.8.0,<0.9.0"
 python-dotenv = ">=0.13.0,<1.0.0"
 
 [[package]]
-name = "databricks-bundle"
-version = "0.8.1b7"
-description = "Databricks bundle for the Daipe framework"
-category = "dev"
+name = "daipe-core"
+version = "0.8.0b4"
+description = "Daipe framework core"
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-console-bundle = ">=0.4.0,<0.5.0"
 injecta = ">=0.10.0,<0.11.0"
 logger-bundle = ">=0.7.0,<0.8.0"
 pyfony-bundles = ">=0.4.0,<0.5.0"
-pyfony-core = ">=0.8.0,<0.9.0"
-
-[[package]]
-name = "databricks-connect"
-version = "7.3.12"
-description = "Databricks Connect Client"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-py4j = "0.10.9"
-six = "*"
-
-[package.extras]
-ml = ["numpy (>=1.7)"]
-mllib = ["numpy (>=1.7)"]
-sql = ["pandas (>=0.23.2)", "pyarrow (>=0.15.1)"]
 
 [[package]]
 name = "datalake-bundle"
-version = "0.6.1b5"
+version = "0.7.0b1"
 description = "DataLake tables management bundle for the Daipe Framework"
 category = "dev"
 optional = false
@@ -133,10 +114,26 @@ python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
 console-bundle = ">=0.4.0,<0.5.0"
-databricks-bundle = ">=0.8.1b7,<0.9.0"
+daipe-core = ">=0.8.0b4,<0.9.0"
+deepdiff = ">=5,<6"
 injecta = ">=0.10.0,<0.11.0"
 pyfony-bundles = ">=0.4.0,<0.5.0"
+pyspark-bundle = ">=0.8.0b1,<0.9.0"
 simpleeval = ">=0.9.10,<1.0.0"
+
+[[package]]
+name = "deepdiff"
+version = "5.5.0"
+description = "Deep Difference and Search of any Python object/data."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+ordered-set = "4.0.2"
+
+[package.extras]
+cli = ["click (==7.1.2)", "pyyaml (==5.4)", "toml (==0.10.2)", "clevercsv (==0.6.7)"]
 
 [[package]]
 name = "flake8"
@@ -215,7 +212,7 @@ tomlkit = ">=0.5.8,<1.0.0"
 name = "logger-bundle"
 version = "0.7.0"
 description = "Logger bundle for the Pyfony framework"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 
@@ -246,6 +243,14 @@ description = "Experimental type system extensions for programs checked with the
 category = "dev"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "ordered-set"
+version = "4.0.2"
+description = "A set that remembers its order, and allows looking up its items by their index in that order."
+category = "dev"
+optional = false
+python-versions = ">=3.5"
 
 [[package]]
 name = "packaging"
@@ -390,6 +395,35 @@ description = "Python parsing module"
 category = "dev"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
+
+[[package]]
+name = "pyspark"
+version = "3.1.1"
+description = "Apache Spark Python API"
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+py4j = "0.10.9"
+
+[package.extras]
+ml = ["numpy (>=1.7)"]
+mllib = ["numpy (>=1.7)"]
+sql = ["pandas (>=0.23.2)", "pyarrow (>=1.0.0)"]
+
+[[package]]
+name = "pyspark-bundle"
+version = "0.8.0b1"
+description = "PySpark bundle for the Daipe Framework"
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+daipe-core = ">=0.8.0b1,<0.9.0"
+injecta = ">=0.10.0,<0.11.0"
+pyfony-bundles = ">=0.4.0,<0.5.0"
 
 [[package]]
 name = "pytest"
@@ -552,7 +586,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "045c5328584bca89a8766575c51b70b05f7e5d0c2e4c260c213b4b2c915df21b"
+content-hash = "9fcdd49e624d7112f325d357c20cb2bb865a8b10cbdce83fd1d89b9b5eb97b57"
 
 [metadata.files]
 appdirs = [
@@ -585,16 +619,15 @@ colorlog = [
 console-bundle = [
     {file = "console_bundle-0.4.0-py3-none-any.whl", hash = "sha256:6fb19484d5ebf6904e60646fb253558c3eebb6335d283088ddb7054f83505921"},
 ]
-databricks-bundle = [
-    {file = "databricks-bundle-0.8.1b7.tar.gz", hash = "sha256:75f0b540a6d36590f48103463b8763f0c93ef8d68200bfe3a23b0a650d18f997"},
-    {file = "databricks_bundle-0.8.1b7-py3-none-any.whl", hash = "sha256:4b72535464cc69558012c5faf87b67f8328a5785d038ac5e377642f1a0bc3cb2"},
-]
-databricks-connect = [
-    {file = "databricks-connect-7.3.12.tar.gz", hash = "sha256:c703a69b89f46ddbf66af89332904e507bf006b97ba1afec07197dc5612fb446"},
+daipe-core = [
+    {file = "daipe_core-0.8.0b4-py3-none-any.whl", hash = "sha256:fd08aa4e283ae5387e29023da1d3789ba7cc7b96f9bba6c57b55902548bf3c72"},
 ]
 datalake-bundle = [
-    {file = "datalake-bundle-0.6.1b5.tar.gz", hash = "sha256:858e71d762f1c8e65f42511de2ac8dab930003e1acfbe779d3e585a79e936e05"},
-    {file = "datalake_bundle-0.6.1b5-py3-none-any.whl", hash = "sha256:6f6c72343a5344d95fff3dcbcdfaa5d706306ce03af3ffade7045762f2d05ca1"},
+    {file = "datalake_bundle-0.7.0b1-py3-none-any.whl", hash = "sha256:60665fef9c84d6656d7fa901c8bd68d91865f4d145346410e248f83961c634f5"},
+]
+deepdiff = [
+    {file = "deepdiff-5.5.0-py3-none-any.whl", hash = "sha256:e054fed9dfe0d83d622921cbb3a3d0b3a6dd76acd2b6955433a0a2d35147774a"},
+    {file = "deepdiff-5.5.0.tar.gz", hash = "sha256:dd79b81c2d84bfa33aa9d94d456b037b68daff6bb87b80dfaa1eca04da68b349"},
 ]
 flake8 = [
     {file = "flake8-3.9.0-py2.py3-none-any.whl", hash = "sha256:12d05ab02614b6aee8df7c36b97d1a3b2372761222b19b58621355e82acddcff"},
@@ -675,6 +708,9 @@ mypy-extensions = [
     {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
     {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
 ]
+ordered-set = [
+    {file = "ordered-set-4.0.2.tar.gz", hash = "sha256:ba93b2df055bca202116ec44b9bead3df33ea63a7d5827ff8e16738b97f33a95"},
+]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
     {file = "packaging-20.4.tar.gz", hash = "sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8"},
@@ -727,6 +763,12 @@ pyfony-sqlalchemy-bundle = [
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
+]
+pyspark = [
+    {file = "pyspark-3.1.1.tar.gz", hash = "sha256:104abc146d4ffb72d4c683d25d7af5a6bf955d94590a76f542ee23185670aa7e"},
+]
+pyspark-bundle = [
+    {file = "pyspark_bundle-0.8.0b1-py3-none-any.whl", hash = "sha256:b89b917785293ed2a8087368ec34ffe9010af141f293204edde35932ea1f37b8"},
 ]
 pytest = [
     {file = "pytest-5.2.4-py3-none-any.whl", hash = "sha256:8e256fe71eb74e14a4d20a5987bb5e1488f0511ee800680aaedc62b9358714e8"},

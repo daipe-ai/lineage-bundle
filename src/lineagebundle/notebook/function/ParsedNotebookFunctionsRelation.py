@@ -1,4 +1,4 @@
-class ParsedEdge:
+class ParsedNotebookFunctionsRelation:
     def __init__(self, source, target):
         self.__source = source
         self.__target = target

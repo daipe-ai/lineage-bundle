@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import Column, UniqueConstraint, ForeignKey
 from sqlalchemy.types import DateTime
 from sqlalchemybundle.entity.Base import Base
-from lineagebundle.pipeline.Notebook import Notebook
+from lineagebundle.notebook.Notebook import Notebook
 
 
 class NotebooksRelation(Base):

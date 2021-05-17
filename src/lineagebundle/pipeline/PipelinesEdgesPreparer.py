@@ -1,9 +1,9 @@
 from typing import List
-from lineagebundle.notebook.node.LineageNode import LineageNode
+from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 
 
 class PipelinesEdgesPreparer:
-    def prepare(self, nodes_with_tables: List[LineageNode]):
+    def prepare(self, nodes_with_tables: List[NotebookFunction]):
         unique_nodes = self.__get_unique_nodes(nodes_with_tables)
         output_table2notebook = self.__map_output_tables2_notebooks(nodes_with_tables)
 
@@ -54,8 +54,9 @@ class PipelinesEdgesPreparer:
                     "notebook": node_with_table.notebook,
                 }
 
-            if node_with_table.input_table:
-                notebooks2tables[node_with_table.notebook.id]["input_tables"].add(node_with_table.input_table)
+            if node_with_table.input_tables:
+                for input_table in node_with_table.input_tables:
+                    notebooks2tables[node_with_table.notebook.id]["input_tables"].add(input_table)
 
             if node_with_table.output_table:
                 notebooks2tables[node_with_table.notebook.id]["output_tables"].add(node_with_table.output_table)

@@ -1,6 +1,7 @@
 parameters:
   lineagebundle:
     notebooks:
+      layer_pattern: '^%daipe.root_module.name%/{layer}'
       patterns: ['**/*.py']
 
 services:
@@ -12,6 +13,7 @@ services:
     arguments:
       - '%daipe.root_module.path%'
       - '%lineagebundle.notebooks.patterns%'
+      - '@consolebundle.logger'
 
   lineagebundle.notebook.LayerResolver:
     arguments:
@@ -24,12 +26,6 @@ services:
   lineagebundle.notebook.decorator.DecoratorParserResolver:
     arguments:
       - !tagged 'lineage.decorator.parser'
-
-  lineagebundle.notebook.decorator.ArgumentParser:
-
-  lineagebundle.notebook.decorator.function.ArgumentClassResolver:
-    arguments:
-      - !tagged 'lineage.decorator.function.argument_mapping'
 
   lineagebundle.LineagePublisherCommand:
     arguments:

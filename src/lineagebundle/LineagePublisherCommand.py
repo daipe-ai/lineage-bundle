@@ -6,7 +6,7 @@ from lineagebundle.LineagePublisherFacade import LineagePublisherFacade
 from lineagebundle.notebook.NotebookCreationFacade import NotebookCreationFacade
 from lineagebundle.notebook.NotebooksLocator import NotebooksLocator
 from lineagebundle.notebook.dag.DagCreator import DagCreator
-from lineagebundle.pipeline.NotebookList import NotebookList
+from lineagebundle.notebook.NotebookList import NotebookList
 from lineagebundle.pipeline.PipelinesLineageGenerator import PipelinesLineageGenerator
 
 
@@ -52,6 +52,11 @@ class LineagePublisherCommand(ConsoleCommand):
 
     def __prepare_notebooks(self):
         notebook_paths = self.__notebooks_locator.locate()
+
+        if not notebook_paths:
+            self.__logger.warning("No notebooks to process")
+            return
+
         return self.__notebook_creation_facade.create(notebook_paths)
 
     def __publish_notebooks_lineage(self, notebook_list: NotebookList):
