@@ -1,4 +1,5 @@
 from typing import List
+import re
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 
 
@@ -15,6 +16,15 @@ class PipelinesEdgesPreparer:
         current_layer_notebooks = []
 
         edges = []
+
+        def is_path(string: str):
+            pattern = re.compile("^['\"]?(?:/[^/]+)*['\"]?$")
+            return pattern.match(string)
+
+        for node in unique_nodes:
+            for table in list(node["input_tables"]):
+                if is_path(table):
+                    node["input_tables"].remove(table)
 
         while unique_nodes:
             unique_node = unique_nodes.pop(0)
@@ -47,8 +57,8 @@ class PipelinesEdgesPreparer:
         notebooks2tables = dict()
 
         for node_with_table in nodes_with_tables:
-            if node_with_table.notebook.id not in notebooks2tables:
-                notebooks2tables[node_with_table.notebook.id] = {
+            if node_with_table.notebook.path not in notebooks2tables:
+                notebooks2tables[node_with_table.notebook.path] = {
                     "input_tables": set(),
                     "output_tables": set(),
                     "notebook": node_with_table.notebook,
@@ -56,10 +66,10 @@ class PipelinesEdgesPreparer:
 
             if node_with_table.input_tables:
                 for input_table in node_with_table.input_tables:
-                    notebooks2tables[node_with_table.notebook.id]["input_tables"].add(input_table)
+                    notebooks2tables[node_with_table.notebook.path]["input_tables"].add(input_table)
 
             if node_with_table.output_table:
-                notebooks2tables[node_with_table.notebook.id]["output_tables"].add(node_with_table.output_table)
+                notebooks2tables[node_with_table.notebook.path]["output_tables"].add(node_with_table.output_table)
 
         return list(notebooks2tables.values())
 

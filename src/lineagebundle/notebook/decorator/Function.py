@@ -34,7 +34,11 @@ class Function:
         if not self.__input_decorator:
             return []
 
-        return [ParsedNotebookFunctionsRelation(arg.linked_function, self.__name) for arg in self.__input_decorator.args if isinstance(arg, FunctionLink)]
+        return [
+            ParsedNotebookFunctionsRelation(arg.linked_function, self.__name)
+            for arg in self.__input_decorator.args
+            if isinstance(arg, FunctionLink)
+        ]
 
     def get_nodes(self):
         return [ParsedNotebookFunction(self.__name, self.__get_input_tables(), self.__get_output_table())]

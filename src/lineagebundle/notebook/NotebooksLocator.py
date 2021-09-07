@@ -31,4 +31,8 @@ class NotebooksLocator:
         for path_pattern in self.__paths_patterns:
             files_grabbed.extend(base_dir.glob(path_pattern))
 
-        return [create_notebook(path) for path in files_grabbed if not path.match(".ipynb_checkpoints/*.py") and is_notebook_with_decorators(path)]
+        return [
+            create_notebook(path)
+            for path in files_grabbed
+            if not path.match(".ipynb_checkpoints/*.py") and is_notebook_with_decorators(path)
+        ]
