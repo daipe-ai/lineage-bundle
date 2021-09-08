@@ -26,3 +26,6 @@ class Notebook(Base):
     def update(self, label: str, layer: str):
         self.label = label
         self.layer = layer
+
+    def soft_delete(self):
+        self.deleted_at = datetime.now()

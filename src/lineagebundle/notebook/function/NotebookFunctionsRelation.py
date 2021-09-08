@@ -18,9 +18,14 @@ class NotebookFunctionsRelation(Base):
     source = Column(String(100), nullable=False)
     target = Column(String(100), nullable=False)
     created_at = Column(DateTime(), nullable=False)
+    deleted_at = Column(DateTime(), nullable=True)
 
     def __init__(self, notebook: Notebook, source: str, target: str):
         self.notebook = notebook
         self.source = source
         self.target = target
         self.created_at = datetime.now()
+        self.deleted_at = None
+
+    def soft_delete(self):
+        self.deleted_at = datetime.now()

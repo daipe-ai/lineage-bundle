@@ -18,8 +18,13 @@ class NotebooksRelation(Base):
     target_id = Column(UNIQUEIDENTIFIER, ForeignKey("notebook.id"), nullable=False)
     target = relationship(Notebook, foreign_keys=[target_id])
     created_at = Column(DateTime(), nullable=False)
+    deleted_at = Column(DateTime(), nullable=True)
 
     def __init__(self, source: Notebook, target: Notebook):
         self.source = source
         self.target = target
         self.created_at = datetime.now()
+        self.deleted_at = None
+
+    def soft_delete(self):
+        self.deleted_at = datetime.now()

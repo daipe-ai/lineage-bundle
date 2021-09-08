@@ -17,13 +17,18 @@ class NotebookFunction(Base):
     name = Column(String(100), nullable=False)
     notebook_id = Column(UNIQUEIDENTIFIER, ForeignKey("notebook.id"), nullable=False)
     notebook = relationship(Notebook)
-    input_tables = Column(JSON, nullable=False)
-    output_table = Column(String(100), nullable=True)
+    input_datasets = Column(JSON, nullable=False)
+    output_dataset = Column(String(100), nullable=True)
     created_at = Column(DateTime(), nullable=False)
+    deleted_at = Column(DateTime(), nullable=True)
 
-    def __init__(self, name: str, notebook: Notebook, input_tables: List[str], output_table: str = None):
+    def __init__(self, name: str, notebook: Notebook, input_datasets: List[str], output_dataset: str = None):
         self.name = name
         self.notebook = notebook
-        self.input_tables = input_tables
-        self.output_table = output_table
+        self.input_datasets = input_datasets
+        self.output_dataset = output_dataset
         self.created_at = datetime.now()
+        self.deleted_at = None
+
+    def soft_delete(self):
+        self.deleted_at = datetime.now()

@@ -10,7 +10,7 @@ class PipelinesLineageGenerator:
 
     def generate(self, entities):
         notebook_functions = [entity for entity in entities if isinstance(entity, NotebookFunction)]
-        nodes_with_tables = list(filter(lambda node: node.input_tables != [] or node.output_table, notebook_functions))
+        nodes_with_tables = list(filter(lambda node: node.input_datasets != [] or node.output_dataset, notebook_functions))
 
         relations = self.__pipelines_edges_preparer.prepare(nodes_with_tables)
 
