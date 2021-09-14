@@ -27,14 +27,23 @@ services:
     arguments:
       - !tagged 'lineage.decorator.parser'
 
-  lineagebundle.LineagePublisherCommand:
+  lineagebundle.notebook.NotebookFunctionsFacade:
+
+  lineagebundle.publisher.DatabasePublisher:
+
+  lineagebundle.LineageDatabaseInitCommand:
     arguments:
-      - '%daipe.root_module.path%'
       - '@consolebundle.logger'
     tags:
       - 'console.command'
 
-  lineagebundle.LineagePublisherFacade:
+  lineagebundle.LineagePublisherCommand:
+    arguments:
+      - '%daipe.root_module.path%'
+      - '@consolebundle.logger'
+      - '@lineagebundle.publisher.DatabasePublisher'
+    tags:
+      - 'console.command'
 
   lineagebundle.pipeline.PipelinesLineageGenerator:
 

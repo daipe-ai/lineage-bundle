@@ -12,8 +12,6 @@ from lineagebundle.notebook.NotebookParser import NotebookParser
 from lineagebundle.notebook.decorator.Function import Function
 
 
-# TODO: vyřešit zacyklování, když notebooky nenavazujou
-# TODO: vyřešit zacyklování, když notebook závisí sám na sobě (čte a produkuje tu stejnou tabulku
 class NotebookParserTest(unittest.TestCase):
 
     __notebook_parser: NotebookParser

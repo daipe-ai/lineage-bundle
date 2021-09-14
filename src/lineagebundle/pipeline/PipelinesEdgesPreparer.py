@@ -1,21 +1,22 @@
 from typing import List
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
-from networkx import MultiDiGraph
+from networkx import DiGraph
 
 
 class PipelinesEdgesPreparer:
     def prepare(self, nodes_with_tables: List[NotebookFunction]):
         unique_nodes = self.__get_unique_nodes(nodes_with_tables)
-        graph = MultiDiGraph()
+        graph = DiGraph()
 
+        all_nodes = unique_nodes.copy()
         while unique_nodes:
             unique_node = unique_nodes.pop(0)
 
-            for other_node in unique_nodes:
+            for other_node in all_nodes:
                 if unique_node["input_tables"].intersection(other_node["output_tables"]):
-                    graph.add_edge(unique_node["notebook"], other_node["notebook"])
+                    graph.add_edge(other_node["notebook"], unique_node["notebook"])
 
-        return graph
+        return graph.edges
 
     def __get_unique_nodes(self, nodes_with_tables):
         notebooks2tables = dict()
@@ -39,5 +40,7 @@ class PipelinesEdgesPreparer:
 
     def __map_output_tables2_notebooks(self, nodes_with_tables):
         return {
-            node_with_table.output_dataset: node_with_table.notebook for node_with_table in nodes_with_tables if node_with_table.output_dataset
+            node_with_table.output_dataset: node_with_table.notebook
+            for node_with_table in nodes_with_tables
+            if node_with_table.output_dataset
         }

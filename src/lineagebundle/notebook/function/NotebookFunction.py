@@ -22,13 +22,11 @@ class NotebookFunction(Base):
     created_at = Column(DateTime(), nullable=False)
     deleted_at = Column(DateTime(), nullable=True)
 
-    def __init__(self, name: str, notebook: Notebook, input_datasets: List[str], output_dataset: str = None):
+    def __init__(
+        self, name: str, notebook: Notebook, input_datasets: List[str], output_dataset: str = None, created_at: DateTime = datetime.now()
+    ):
         self.name = name
         self.notebook = notebook
         self.input_datasets = input_datasets
         self.output_dataset = output_dataset
-        self.created_at = datetime.now()
-        self.deleted_at = None
-
-    def soft_delete(self):
-        self.deleted_at = datetime.now()
+        self.created_at = created_at

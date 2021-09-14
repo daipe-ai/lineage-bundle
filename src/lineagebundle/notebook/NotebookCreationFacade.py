@@ -20,8 +20,6 @@ class NotebookCreationFacade:
     def __create_notebook(self, notebook_path: Path):
         notebook_path_str = str(notebook_path.as_posix())
 
-        # TODO: algoritmus "pojedu odspodu, když je scriptname stejný jako adresář tak přeskočím, pak doména a pak layer a pak konec
-
         if notebook_path.stem != notebook_path.parent.stem:
             label = notebook_path.parent.stem + "/" + notebook_path.stem
         else:

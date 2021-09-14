@@ -4,8 +4,8 @@ from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFu
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 
 
-class LineagePublisherFacade:
-    def publish(self, notebooks_with_nodes: List[Dict[str, Any]], notebooks_with_edges: List[Dict[str, Any]]):
+class NotebookFunctionsFacade:
+    def prepare(self, notebooks_with_nodes: List[Dict[str, Any]], notebooks_with_edges: List[Dict[str, Any]]):
 
         entities = []
 
