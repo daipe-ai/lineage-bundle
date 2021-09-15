@@ -12,12 +12,12 @@ class NotebookCreationFacade:
     ):
         self.__layer_resolver = layer_resolver
 
-    def create(self, notebook_paths: List[Path]):
+    def create(self, notebook_paths: List[Path]) -> NotebookList:
         notebooks = [self.__create_notebook(notebook_path) for notebook_path in notebook_paths]
 
         return NotebookList(notebooks)
 
-    def __create_notebook(self, notebook_path: Path):
+    def __create_notebook(self, notebook_path: Path) -> Notebook:
         notebook_path_str = str(notebook_path.as_posix())
 
         if notebook_path.stem != notebook_path.parent.stem:

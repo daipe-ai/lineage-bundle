@@ -1,10 +1,11 @@
+from networkx.classes.reportviews import OutEdgeView
 from typing import List
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 from networkx import DiGraph
 
 
 class PipelinesEdgesPreparer:
-    def prepare(self, nodes_with_tables: List[NotebookFunction]):
+    def prepare(self, nodes_with_tables: List[NotebookFunction]) -> OutEdgeView:
         unique_nodes = self.__get_unique_nodes(nodes_with_tables)
         graph = DiGraph()
 
@@ -37,10 +38,3 @@ class PipelinesEdgesPreparer:
                 notebooks2tables[node_with_table.notebook.path]["output_tables"].add(node_with_table.output_dataset)
 
         return list(notebooks2tables.values())
-
-    def __map_output_tables2_notebooks(self, nodes_with_tables):
-        return {
-            node_with_table.output_dataset: node_with_table.notebook
-            for node_with_table in nodes_with_tables
-            if node_with_table.output_dataset
-        }
