@@ -31,7 +31,11 @@ services:
     arguments:
       - '%daipe.root_module.path%'
 
-  lineagebundle.publisher.DatabasePublisher:
+  lineagebundle.publish.DatabasePublisher:
+
+  lineagebundle.publish.PipelinesHTMLParser:
+
+  lineagebundle.publish.NotebookDetailHTMLParser:
 
   lineagebundle.LineageGenerator:
 
@@ -41,10 +45,15 @@ services:
     tags:
       - 'console.command'
 
-  lineagebundle.LineagePublisherCommand:
+  lineagebundle.LineageHTMLPublisherCommand:
     arguments:
       - '@consolebundle.logger'
-      - '@lineagebundle.publisher.DatabasePublisher'
+    tags:
+      - 'console.command'
+
+  lineagebundle.LineageDBPublisherCommand:
+    arguments:
+      - '@consolebundle.logger'
     tags:
       - 'console.command'
 

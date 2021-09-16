@@ -393,7 +393,7 @@ pyfony-bundles = ">=0.4.0,<0.5.0"
 
 [[package]]
 name = "pyfony-sqlalchemy-bundle"
-version = "0.1.2"
+version = "0.2.0"
 description = "SQL Alchemy bundle for the Pyfony framework"
 category = "main"
 optional = false
@@ -602,7 +602,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "2ebb832e5eb0789146450f242b53166336841795d91ed2dd2360e4431932bd7a"
+content-hash = "0142448faba00bc78844d5f2e1456352e53ea5c2e92717282eee339bbde7fd3b"
 
 [metadata.files]
 appdirs = [
@@ -778,7 +778,7 @@ pyfony-core = [
     {file = "pyfony_core-0.8.0-py3-none-any.whl", hash = "sha256:2f5f676a73d7ad8c1426272681c4958f64d4f627fef75865663f41c30ba8b2c9"},
 ]
 pyfony-sqlalchemy-bundle = [
-    {file = "pyfony_sqlalchemy_bundle-0.1.2-py3-none-any.whl", hash = "sha256:75fb8e4dbbb1f4070afb35b5a40cb3d3ffe15a14782a0fd6087022cf0cdbf772"},
+    {file = "pyfony_sqlalchemy_bundle-0.2.0-py3-none-any.whl", hash = "sha256:036d419e08db826825c89721d066b358937a5698b33f2be06513775abd15fe61"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},

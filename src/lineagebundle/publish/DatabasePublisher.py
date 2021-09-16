@@ -3,13 +3,12 @@ from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFunctionsRelation
 from lineagebundle.pipeline.NotebooksRelation import NotebooksRelation
 from lineagebundle.notebook.Notebook import Notebook
-from lineagebundle.publisher.PublisherInterface import PublisherInterface
 from sqlalchemy.orm.session import Session
 from sqlalchemybundle.entity.Base import Base
 from typing import List
 
 
-class DatabasePublisher(PublisherInterface):
+class DatabasePublisher:
     def __init__(self, orm_session: Session):
         self.__orm_session = orm_session
 
