@@ -1,11 +1,10 @@
 from typing import Optional
-from databricksbundle.notebook.lineage.InputDecoratorInterface import InputDecoratorInterface
-from databricksbundle.notebook.lineage.OutputDecoratorInterface import OutputDecoratorInterface
-from databricksbundle.notebook.lineage.argument.FunctionLink import FunctionLink
-from datalakebundle.notebook.lineage.TableWriter import TableWriter
-from datalakebundle.notebook.lineage.argument.ReadTable import ReadTable
-from lineagebundle.notebook.edge.ParsedEdge import ParsedEdge
-from lineagebundle.notebook.node.ParsedNode import ParsedNode
+from daipecore.lineage.InputDecoratorInterface import InputDecoratorInterface
+from daipecore.lineage.OutputDecoratorInterface import OutputDecoratorInterface
+from daipecore.lineage.argument.DecoratorInputFunctionInterface import DecoratorInputFunctionInterface
+from daipecore.lineage.argument.FunctionLink import FunctionLink
+from lineagebundle.notebook.function.ParsedNotebookFunctionsRelation import ParsedNotebookFunctionsRelation
+from lineagebundle.notebook.function.ParsedNotebookFunction import ParsedNotebookFunction
 
 
 class Function:
@@ -35,24 +34,28 @@ class Function:
         if not self.__input_decorator:
             return []
 
-        return [ParsedEdge(arg.linked_function, self.__name) for arg in self.__input_decorator.args if isinstance(arg, FunctionLink)]
+        return [
+            ParsedNotebookFunctionsRelation(arg.linked_function, self.__name)
+            for arg in self.__input_decorator.args
+            if isinstance(arg, FunctionLink)
+        ]
 
     def get_nodes(self):
-        return [ParsedNode(self.__name, self.__get_input_table(), self.__get_output_table())]
+        return [ParsedNotebookFunction(self.__name, self.__get_input_tables(), self.__get_output_table())]
 
-    def __get_input_table(self):
+    def __get_input_tables(self):
         if not self.__input_decorator:
             return None
 
-        read_table_args = [arg for arg in self.__input_decorator.args if isinstance(arg, ReadTable)]
+        read_table_args = [arg for arg in self.__input_decorator.args if isinstance(arg, DecoratorInputFunctionInterface)]
 
         if not read_table_args:
             return None
 
-        return read_table_args[0].table_name
+        return [read_table_arg.identifier for read_table_arg in read_table_args]
 
     def __get_output_table(self):
-        if isinstance(self.__output_decorator, TableWriter):
-            return self.__output_decorator.table_name
+        if not self.__output_decorator:
+            return None
 
-        return None
+        return self.__output_decorator.identifier

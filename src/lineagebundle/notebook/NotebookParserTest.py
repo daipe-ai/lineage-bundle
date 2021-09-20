@@ -1,11 +1,10 @@
 import os
 import unittest
 from pathlib import Path
-from databricksbundle.notebook.lineage.NotebookFunction import NotebookFunction
-from databricksbundle.notebook.lineage.argument.FunctionCallAttribute import FunctionCallAttribute
-from databricksbundle.notebook.lineage.argument.FunctionLink import FunctionLink
+from daipecore.lineage.InputDecorator import InputDecorator
+from daipecore.lineage.argument.FunctionCallAttribute import FunctionCallAttribute
+from daipecore.lineage.argument.FunctionLink import FunctionLink
 from datalakebundle.notebook.lineage.TableWriter import TableWriter
-from datalakebundle.notebook.lineage.Transformation import Transformation
 from datalakebundle.notebook.lineage.argument.ReadTable import ReadTable
 from datalakebundle.notebook.lineage.argument.TableParams import TableParams
 from pyfonycore.bootstrap import bootstrapped_container
@@ -34,12 +33,12 @@ class NotebookParserTest(unittest.TestCase):
 
         self.assertEqual(1, len(table_loader.decorators))
         transformation = table_loader.decorators[0]
-        self.assertIsInstance(transformation, Transformation)
+        self.assertIsInstance(transformation, InputDecorator)
 
         self.assertEqual(1, len(transformation.args))
         read_table = transformation.args[0]
         self.assertIsInstance(read_table, ReadTable)
-        self.assertEqual("sample_db.sample_table", read_table.table_name)
+        self.assertEqual("sample_db.sample_table", read_table.full_table_name)
 
     def test_table_params(self):
         directory = os.path.dirname(__file__)
@@ -53,7 +52,7 @@ class NotebookParserTest(unittest.TestCase):
 
         self.assertEqual(1, len(load_sample_table.decorators))
         notebook_function = load_sample_table.decorators[0]
-        self.assertIsInstance(notebook_function, NotebookFunction)
+        self.assertIsInstance(notebook_function, InputDecorator)
 
         self.assertEqual(1, len(notebook_function.args))
         function_call_attribute = notebook_function.args[0]
@@ -75,7 +74,7 @@ class NotebookParserTest(unittest.TestCase):
 
         self.assertEqual(1, len(add_timestamp.decorators))
         transformation = add_timestamp.decorators[0]
-        self.assertIsInstance(transformation, Transformation)
+        self.assertIsInstance(transformation, InputDecorator)
 
         self.assertEqual(1, len(transformation.args))
         linked_function = transformation.args[0]
@@ -95,12 +94,12 @@ class NotebookParserTest(unittest.TestCase):
 
         self.assertEqual(2, len(load_and_write.decorators))
         transformation = load_and_write.decorators[0]
-        self.assertIsInstance(transformation, Transformation)
+        self.assertIsInstance(transformation, InputDecorator)
         table_writer = load_and_write.decorators[1]
         self.assertIsInstance(table_writer, TableWriter)
         self.assertEqual("overwrite", table_writer.mode)
 
-        self.assertEqual("sample_db.sample_output_table2", table_writer.table_name)
+        self.assertEqual("sample_db.sample_output_table2", table_writer.full_table_name)
 
 
 if __name__ == "__main__":

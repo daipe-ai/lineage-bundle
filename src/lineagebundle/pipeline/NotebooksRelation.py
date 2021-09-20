@@ -2,10 +2,10 @@ from datetime import datetime
 from uuid import uuid4
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
-from sqlalchemy.sql.schema import Column, UniqueConstraint, ForeignKey
+from sqlalchemy.sql.schema import Column, ForeignKey, UniqueConstraint
 from sqlalchemy.types import DateTime
 from sqlalchemybundle.entity.Base import Base
-from lineagebundle.pipeline.Notebook import Notebook
+from lineagebundle.notebook.Notebook import Notebook
 
 
 class NotebooksRelation(Base):
@@ -18,8 +18,9 @@ class NotebooksRelation(Base):
     target_id = Column(UNIQUEIDENTIFIER, ForeignKey("notebook.id"), nullable=False)
     target = relationship(Notebook, foreign_keys=[target_id])
     created_at = Column(DateTime(), nullable=False)
+    deleted_at = Column(DateTime(), nullable=True)
 
-    def __init__(self, source: Notebook, target: Notebook):
+    def __init__(self, source: Notebook, target: Notebook, created_at: DateTime = datetime.now()):
         self.source = source
         self.target = target
-        self.created_at = datetime.now()
+        self.created_at = created_at

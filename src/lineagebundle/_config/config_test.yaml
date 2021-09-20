@@ -1,14 +1,10 @@
 parameters:
-  databricksbundle:
-    databricks_connect:
-      connection:
-        address: 'https://dbc-123.cloud.databricks.com'
-        token: 'abcd123456'
-        cluster_id: '0416-084917-doles835'
-
   lineagebundle:
     notebooks:
       layer_pattern: '^%daipe.root_module.name%/{layer}'
+
+  pysparkbundle:
+    filesystem: dummy_filesystem
 
   sqlalchemybundle:
     connections:
@@ -18,3 +14,13 @@ parameters:
         database: 'mydatabase'
         username: 'root'
         password: 'pass123'
+
+services:
+  pysparkbundle.test.DummySparkFactory:
+
+  pyspark.sql.session.SparkSession:
+    factory: [ '@pysparkbundle.test.DummySparkFactory', 'create' ]
+
+  pysparkbundle.filesystem.DummyFilesystem:
+    tags:
+      - {name: 'pysparkbundle.filesystem', alias: dummy_filesystem}

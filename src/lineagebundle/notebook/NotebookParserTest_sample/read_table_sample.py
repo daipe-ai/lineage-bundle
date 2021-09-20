@@ -1,5 +1,6 @@
+from datalakebundle.notebook.decorator.transformation import transformation
+from datalakebundle.table.read.table_reader import read_table
 from pyspark.sql import DataFrame
-from datalakebundle.notebook.decorators import transformation, read_table
 
 
 @transformation(read_table("sample_db.sample_table"))

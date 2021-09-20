@@ -1,5 +1,5 @@
 from typing import List
-from databricksbundle.notebook.lineage.DecoratorParserInterface import DecoratorParserInterface
+from daipecore.lineage.DecoratorParserInterface import DecoratorParserInterface
 
 
 class DecoratorParserResolver:
