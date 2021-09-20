@@ -5,15 +5,15 @@ description = "Lineage generation bundle"
 readme = "README.md"
 repository = "https://github.com/daipe-ai/lineage-bundle"
 
-license = "MIT"
+license = "Proprietary"
 
 authors = [
-    "Jiri Koutny <jiri.koutny@datasentics.com>"
+    "Datasentics <jiri.koutny@datasentics.com>"
 ]
 
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
 ]
 

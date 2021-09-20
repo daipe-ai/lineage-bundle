@@ -1,6 +1,6 @@
 # Lineage bundle
 
-**This package is distributed under the "DataSentics SW packages Terms of Use." See [license](LICENSE.txt)**
+**This package is distributed under the "DataSentics SW packages Terms of Use." See [license](https://raw.githubusercontent.com/daipe-ai/lineage-bundle/master/LICENSE.txt)**
 
 Lineage bundle allows you to generate and publish lineage of notebooks and notebook functions of your __Daipe__ project.
 
