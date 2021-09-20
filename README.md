@@ -40,7 +40,7 @@ APP_ENV=dev
 DBX_TOKEN=
 # Lineage
 DB_HOST=address.of.mssql.server.com
-DB_NAME=daipe
+DB_NAME=db_name
 DB_USER=username
 DB_PASS=password
 ```
@@ -57,6 +57,6 @@ console lineage:lineage:publish
 
 ## Preview
 ### Pipelines lineage
-![Example lineage](static/lineage.png)
+![Example lineage](https://raw.githubusercontent.com/daipe-ai/lineage-bundle/master/static/lineage.png)
 ### Functions lineage
-![Example lineage](static/lineage-functions.png)
+![Example lineage](https://raw.githubusercontent.com/daipe-ai/lineage-bundle/master/static/lineage-functions.png)
