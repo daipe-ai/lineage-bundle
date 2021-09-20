@@ -1,24 +1,24 @@
 # Lineage bundle
 
-<span style="color:red">This package is distributed under the "DataSentics SW packages Terms of Use." See [license](LICENSE.txt).</span>
+**This package is distributed under the "DataSentics SW packages Terms of Use." See [license](LICENSE.txt)**
 
 Lineage bundle allows you to generate and publish lineage of notebooks and notebook functions of your __Daipe__ project.
 
 ## Getting started
 
-
-### Add _lineage-bundle_ to your pyproject.toml
+### Add _lineage-bundle_ to your project
 ```yaml
-[tool.poetry.dev-dependencies]
-lineage-bundle = {path = "/home/username/path/to/lineage-bundle", develop = true}
+poetry add lineage-bundle --dev
 ```
 
-### Update the dependency
-```yaml
-poetry update lineage-bundle
+### Generate and publish lineage to a static HTML
+```bash
+console lineage:publish:html
 ```
 
-### Add _sqlalchemybundle.yaml_ file to `[PROJECT_NAME]/_config/bundles/`
+## Optional:
+
+#### To use a databaase: add _sqlalchemybundle.yaml_ file to `[PROJECT_NAME]/_config/bundles/`
 ```yaml
 parameters:
   sqlalchemybundle:
@@ -31,7 +31,7 @@ parameters:
         password: '%env(DB_PASS)%'
         driver: '{ODBC Driver 17 for SQL Server}'
 ```
-### In _.env_ in your Daipe project
+#### In _.env_ in your Daipe project
 
 ```yaml
 APP_ENV=dev
@@ -45,14 +45,14 @@ DB_USER=username
 DB_PASS=password
 ```
 
-### Initialize the database
+#### Initialize the database
 ```bash
 console lineage:database:init
 ```
 
-### Generate and publish lineage
+#### Generate and publish lineage to database
 ```bash
-console lineage:lineage:publish
+console lineage:publish:database
 ```
 
 ## Preview
