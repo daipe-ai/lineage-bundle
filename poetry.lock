@@ -393,7 +393,7 @@ pyfony-bundles = ">=0.4.0,<0.5.0"
 
 [[package]]
 name = "pyfony-sqlalchemy-bundle"
-version = "0.2.0"
+version = "1.0.0"
 description = "SQL Alchemy bundle for the Pyfony framework"
 category = "main"
 optional = false
@@ -403,6 +403,7 @@ python-versions = ">=3.7,<4.0"
 console-bundle = ">=0.4.0,<0.5.0"
 pyfony-bundles = ">=0.4.0,<0.5.0"
 SQLAlchemy = ">=1.3,<2.0"
+Werkzeug = ">=2.0.1,<3.0.0"
 
 [[package]]
 name = "pyparsing"
@@ -588,6 +589,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "werkzeug"
+version = "2.0.1"
+description = "The comprehensive WSGI web application library."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+watchdog = ["watchdog"]
+
+[[package]]
 name = "zipp"
 version = "3.1.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -602,7 +614,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "0142448faba00bc78844d5f2e1456352e53ea5c2e92717282eee339bbde7fd3b"
+content-hash = "cec00d1002d4d29a31264cdd12106c9d83014894a2fbd3a916650376a7c643db"
 
 [metadata.files]
 appdirs = [
@@ -778,7 +790,7 @@ pyfony-core = [
     {file = "pyfony_core-0.8.0-py3-none-any.whl", hash = "sha256:2f5f676a73d7ad8c1426272681c4958f64d4f627fef75865663f41c30ba8b2c9"},
 ]
 pyfony-sqlalchemy-bundle = [
-    {file = "pyfony_sqlalchemy_bundle-0.2.0-py3-none-any.whl", hash = "sha256:036d419e08db826825c89721d066b358937a5698b33f2be06513775abd15fe61"},
+    {file = "pyfony_sqlalchemy_bundle-1.0.0-py3-none-any.whl", hash = "sha256:fe1d64ce79322eb21fc62eef5b10d9d1c024bb313adcfff4ccf6e180098cc2fc"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
@@ -951,6 +963,10 @@ typing-extensions = [
 wcwidth = [
     {file = "wcwidth-0.2.5-py2.py3-none-any.whl", hash = "sha256:beb4802a9cebb9144e99086eff703a642a13d6a0052920003a230f3294bbe784"},
     {file = "wcwidth-0.2.5.tar.gz", hash = "sha256:c4d647b99872929fdb7bdcaa4fbe7f01413ed3d98077df798530e5b04f116c83"},
+]
+werkzeug = [
+    {file = "Werkzeug-2.0.1-py3-none-any.whl", hash = "sha256:6c1ec500dcdba0baa27600f6a22f6333d8b662d22027ff9f6202e3367413caa8"},
+    {file = "Werkzeug-2.0.1.tar.gz", hash = "sha256:1de1db30d010ff1af14a009224ec49ab2329ad2cde454c8a708130642d579c42"},
 ]
 zipp = [
     {file = "zipp-3.1.0-py3-none-any.whl", hash = "sha256:aa36550ff0c0b7ef7fa639055d797116ee891440eac1a56f378e2d3179e0320b"},

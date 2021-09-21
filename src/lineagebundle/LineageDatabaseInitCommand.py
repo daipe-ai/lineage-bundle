@@ -1,7 +1,7 @@
 from logging import Logger
 
 from consolebundle.ConsoleCommand import ConsoleCommand
-from sqlalchemy.orm.session import Session
+from sqlalchemybundle.session.SessionLazy import SessionLazy
 from sqlalchemybundle.entity.Base import Base
 
 
@@ -9,10 +9,10 @@ class LineageDatabaseInitCommand(ConsoleCommand):
     def __init__(
         self,
         logger: Logger,
-        orm_session: Session,
+        session_lazy: SessionLazy,
     ):
         self.__logger = logger
-        self.__orm_session = orm_session
+        self.__session_lazy = session_lazy
 
     def get_command(self) -> str:
         return "lineage:database:init"
@@ -23,6 +23,6 @@ class LineageDatabaseInitCommand(ConsoleCommand):
     def run(self, _):
         self.__logger.info("Initializing database...")
 
-        Base.metadata.create_all(self.__orm_session.get_bind())
+        Base.metadata.create_all(self.__session_lazy.get.get_bind())
 
         self.__logger.info("Database successfully initialized.")
