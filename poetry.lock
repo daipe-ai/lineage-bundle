@@ -93,7 +93,7 @@ python-dotenv = ">=0.13.0,<1.0.0"
 
 [[package]]
 name = "daipe-core"
-version = "1.1.1"
+version = "1.1.2"
 description = "Daipe framework core"
 category = "main"
 optional = false
@@ -648,7 +648,7 @@ console-bundle = [
     {file = "console_bundle-0.4.0-py3-none-any.whl", hash = "sha256:6fb19484d5ebf6904e60646fb253558c3eebb6335d283088ddb7054f83505921"},
 ]
 daipe-core = [
-    {file = "daipe_core-1.1.1-py3-none-any.whl", hash = "sha256:ae9282b4bbb60919f14bc3f186212bd324ad48a04cd3bb3f162e7455016db3b3"},
+    {file = "daipe_core-1.1.2-py3-none-any.whl", hash = "sha256:fffa62d9c7aa4cbb058a8da59ab568cb73f8c7954b4d0eb65739e47b46a8e578"},
 ]
 datalake-bundle = [
     {file = "datalake_bundle-1.0.2-py3-none-any.whl", hash = "sha256:ff729fba804187cd9bf3ac2800c8461db8fb35c1cb56faf8a9f04381a567abbe"},
