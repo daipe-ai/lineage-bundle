@@ -2,6 +2,7 @@ from lineagebundle.notebook.NotebookCreationFacade import NotebookCreationFacade
 from lineagebundle.notebook.NotebookFunctionsLineageGenerator import NotebookFunctionsLineageGenerator
 from lineagebundle.notebook.NotebooksLocator import NotebooksLocator
 from lineagebundle.pipeline.PipelinesLineageGenerator import PipelinesLineageGenerator
+from logging import Logger
 from sqlalchemybundle.entity.Base import Base
 from typing import List
 
