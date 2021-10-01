@@ -3,6 +3,7 @@ from lineagebundle.notebook.NotebookFunctionsLineageGenerator import NotebookFun
 from lineagebundle.notebook.NotebooksLocator import NotebooksLocator
 from lineagebundle.pipeline.PipelinesLineageGenerator import PipelinesLineageGenerator
 from logging import Logger
+from networkx import DiGraph
 from sqlalchemybundle.entity.Base import Base
 from typing import List
 
@@ -21,6 +22,12 @@ class LineageGenerator:
         self.__notebook_creation_facade = notebook_creation_facade
         self.__notebook_functions_lineage_generator = notebook_functions_lineage_generator
         self.__pipelines_lineage_generator = pipelines_lineage_generator
+
+    def get_pipelines_graph(self) -> DiGraph:
+        notebook_list = self.__prepare_notebooks()
+
+        functions_entities = self.__notebook_functions_lineage_generator.generate(notebook_list)
+        return self.__pipelines_lineage_generator.get_graph(functions_entities)
 
     def generate_entities(self) -> List[Base]:
         notebook_list = self.__prepare_notebooks()

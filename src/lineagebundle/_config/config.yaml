@@ -7,6 +7,8 @@ parameters:
       html:
         path: 'lineage'
         notebooks_subpath: 'notebooks'
+    orchestration:
+      notebook_relpath: 'orchestration/orchestration_notebook.py'
 
 services:
   lineagebundle.notebook.NotebookCreationFacade:
@@ -67,6 +69,18 @@ services:
     tags:
       - 'console.command'
 
+  lineagebundle.orchestration.OrchestrationNotebookGenerator:
+    arguments:
+      - '@consolebundle.logger'
+      - '%daipe.root_module%'
+      - '%lineagebundle.orchestration.notebook_relpath%'
+
+  lineagebundle.OrchestrationGenerateNotebookCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
   lineagebundle.pipeline.PipelinesLineageGenerator:
 
-  lineagebundle.pipeline.PipelinesEdgesPreparer:
+  lineagebundle.pipeline.PipelinesGraphPreparer:

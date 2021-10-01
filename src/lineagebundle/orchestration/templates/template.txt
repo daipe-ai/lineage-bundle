@@ -1,0 +1,19 @@
+# Databricks notebook source
+# MAGIC %md
+# MAGIC # Orchestration notebook
+
+# COMMAND ----------
+
+# MAGIC %run INSTALL_MASTER_PACKAGE_PATH
+
+# COMMAND ----------
+
+import datalakebundle.imports as dl
+from pyspark.dbutils import DBUtils
+
+# COMMAND ----------
+
+
+@dl.notebook_function()
+def orchestrate(dbutils: DBUtils):
+CELL_CODE

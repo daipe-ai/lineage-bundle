@@ -1,11 +1,10 @@
-from networkx.classes.reportviews import OutEdgeView
-from typing import List
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 from networkx import DiGraph
+from typing import List
 
 
-class PipelinesEdgesPreparer:
-    def prepare(self, nodes_with_tables: List[NotebookFunction]) -> OutEdgeView:
+class PipelinesGraphPreparer:
+    def prepare(self, nodes_with_tables: List[NotebookFunction]) -> DiGraph:
         unique_nodes = self.__get_unique_nodes(nodes_with_tables)
         graph = DiGraph()
 
@@ -17,7 +16,7 @@ class PipelinesEdgesPreparer:
                 if unique_node["input_tables"].intersection(other_node["output_tables"]):
                     graph.add_edge(other_node["notebook"], unique_node["notebook"])
 
-        return graph.edges
+        return graph
 
     def __get_unique_nodes(self, nodes_with_tables):
         notebooks2tables = dict()
