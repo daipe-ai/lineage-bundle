@@ -79,7 +79,7 @@ colorama = {version = "*", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "console-bundle"
-version = "0.4.0"
+version = "0.5.0"
 description = "Console Bundle for the Pyfony Framework"
 category = "main"
 optional = false
@@ -107,14 +107,14 @@ pyfony-bundles = ">=0.4.0,<0.5.0"
 
 [[package]]
 name = "datalake-bundle"
-version = "1.0.2"
+version = "1.0.3"
 description = "DataLake tables management bundle for the Daipe Framework"
 category = "dev"
 optional = false
 python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-console-bundle = ">=0.4.0,<0.5.0"
+console-bundle = ">=0.5,<0.6"
 daipe-core = ">=1.0,<2.0"
 deepdiff = ">=5,<6"
 injecta = ">=0.10.0,<0.11.0"
@@ -393,14 +393,14 @@ pyfony-bundles = ">=0.4.0,<0.5.0"
 
 [[package]]
 name = "pyfony-sqlalchemy-bundle"
-version = "1.0.0"
+version = "1.0.1"
 description = "SQL Alchemy bundle for the Pyfony framework"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-console-bundle = ">=0.4.0,<0.5.0"
+console-bundle = ">=0.5,<0.6"
 pyfony-bundles = ">=0.4.0,<0.5.0"
 SQLAlchemy = ">=1.3,<2.0"
 Werkzeug = ">=2.0.1,<3.0.0"
@@ -614,7 +614,7 @@ testing = ["jaraco.itertools", "func-timeout"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "cec00d1002d4d29a31264cdd12106c9d83014894a2fbd3a916650376a7c643db"
+content-hash = "513ade40a4e2ded8122962ba276496197f7d2e8d1430ec4f0e4045f1b8f26dd2"
 
 [metadata.files]
 appdirs = [
@@ -645,13 +645,13 @@ colorlog = [
     {file = "colorlog-4.0.2.tar.gz", hash = "sha256:3cf31b25cbc8f86ec01fef582ef3b840950dea414084ed19ab922c8b493f9b42"},
 ]
 console-bundle = [
-    {file = "console_bundle-0.4.0-py3-none-any.whl", hash = "sha256:6fb19484d5ebf6904e60646fb253558c3eebb6335d283088ddb7054f83505921"},
+    {file = "console_bundle-0.5.0-py3-none-any.whl", hash = "sha256:209351f03f19796c1677cae38416d6ffbf8158c2c217cf85f0e0c3f5ff16b7c2"},
 ]
 daipe-core = [
     {file = "daipe_core-1.1.2-py3-none-any.whl", hash = "sha256:fffa62d9c7aa4cbb058a8da59ab568cb73f8c7954b4d0eb65739e47b46a8e578"},
 ]
 datalake-bundle = [
-    {file = "datalake_bundle-1.0.2-py3-none-any.whl", hash = "sha256:ff729fba804187cd9bf3ac2800c8461db8fb35c1cb56faf8a9f04381a567abbe"},
+    {file = "datalake_bundle-1.0.3-py3-none-any.whl", hash = "sha256:e30cad6b9c285c8f5de1b6f779efd350727d25d3a17926b56a4e76043b7f51b4"},
 ]
 deepdiff = [
     {file = "deepdiff-5.5.0-py3-none-any.whl", hash = "sha256:e054fed9dfe0d83d622921cbb3a3d0b3a6dd76acd2b6955433a0a2d35147774a"},
@@ -790,7 +790,7 @@ pyfony-core = [
     {file = "pyfony_core-0.8.0-py3-none-any.whl", hash = "sha256:2f5f676a73d7ad8c1426272681c4958f64d4f627fef75865663f41c30ba8b2c9"},
 ]
 pyfony-sqlalchemy-bundle = [
-    {file = "pyfony_sqlalchemy_bundle-1.0.0-py3-none-any.whl", hash = "sha256:fe1d64ce79322eb21fc62eef5b10d9d1c024bb313adcfff4ccf6e180098cc2fc"},
+    {file = "pyfony_sqlalchemy_bundle-1.0.1-py3-none-any.whl", hash = "sha256:58d9557d4944aa9e8972bd02efa57be6cd2b7be5d13f4dcb66365fa0e3a828a8"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
