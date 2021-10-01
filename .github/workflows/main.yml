@@ -12,9 +12,10 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - uses: conda-incubator/setup-miniconda@v2.0.0
+      - name: Install Miniforge
+        uses: conda-incubator/setup-miniconda@v2.1.1
         with:
-          miniconda-version: 'py38_4.8.3'
+          miniforge-version: 4.10.3-6
 
       - name: cache venv
         id: cache-venv
@@ -23,9 +24,9 @@ jobs:
           path: |
             .venv
             ~/.poetry/env
-          key: ${{ runner.os }}-venv-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-env-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-venv-
+            ${{ runner.os }}-env-
 
       - name: setup
         run: |
@@ -92,10 +93,10 @@ jobs:
           version: 1.1.4
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Miniconda
-        uses: conda-incubator/setup-miniconda@v2.0.0
+      - name: Install Miniforge
+        uses: conda-incubator/setup-miniconda@v2.1.1
         with:
-          miniconda-version: 'py38_4.8.3'
+          miniforge-version: 4.10.3-6
       - name: Build package
         run: |
           conda env create -f environment.yml -p .venv
