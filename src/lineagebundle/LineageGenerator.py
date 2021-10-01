@@ -9,11 +9,13 @@ from typing import List
 class LineageGenerator:
     def __init__(
         self,
+        logger: Logger,
         notebooks_locator: NotebooksLocator,
         notebook_creation_facade: NotebookCreationFacade,
         notebook_functions_lineage_generator: NotebookFunctionsLineageGenerator,
         pipelines_lineage_generator: PipelinesLineageGenerator,
     ):
+        self.__logger = logger
         self.__notebooks_locator = notebooks_locator
         self.__notebook_creation_facade = notebook_creation_facade
         self.__notebook_functions_lineage_generator = notebook_functions_lineage_generator

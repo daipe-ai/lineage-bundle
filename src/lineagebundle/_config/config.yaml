@@ -38,6 +38,8 @@ services:
   lineagebundle.publish.NotebookDetailHTMLParser:
 
   lineagebundle.LineageGenerator:
+    arguments:
+      - '@consolebundle.logger'
 
   lineagebundle.LineageDatabaseInitCommand:
     arguments:
