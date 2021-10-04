@@ -25,3 +25,6 @@ class Notebook(Base):
     def update(self, label: str, layer: str):
         self.label = label
         self.layer = layer
+
+    def __repr__(self):
+        return f"{self.label}"
