@@ -1,5 +1,5 @@
 from consolebundle.ConsoleCommand import ConsoleCommand
-from lineagebundle.LineageGenerator import LineageGenerator
+from lineagebundle.lineage.LineageGenerator import LineageGenerator
 
 from lineagebundle.publish.DatabasePublisher import DatabasePublisher
 from logging import Logger

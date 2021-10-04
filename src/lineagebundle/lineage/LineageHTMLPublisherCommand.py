@@ -1,6 +1,6 @@
 from argparse import Namespace
 from consolebundle.ConsoleCommand import ConsoleCommand
-from lineagebundle.LineageGenerator import LineageGenerator
+from lineagebundle.lineage.LineageGenerator import LineageGenerator
 from lineagebundle.notebook.Notebook import Notebook
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
 from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFunctionsRelation

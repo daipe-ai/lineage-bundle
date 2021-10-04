@@ -45,17 +45,17 @@ services:
 
   lineagebundle.publish.NotebookDetailHTMLParser:
 
-  lineagebundle.LineageGenerator:
+  lineagebundle.lineage.LineageGenerator:
     arguments:
       - '@consolebundle.logger'
 
-  lineagebundle.LineageDatabaseInitCommand:
+  lineagebundle.lineage.LineageDatabaseInitCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
       - 'console.command'
 
-  lineagebundle.LineageHTMLPublisherCommand:
+  lineagebundle.lineage.LineageHTMLPublisherCommand:
     arguments:
       - '@consolebundle.logger'
       - '%lineagebundle.publish.html.path%'
@@ -63,7 +63,7 @@ services:
     tags:
       - 'console.command'
 
-  lineagebundle.LineageDBPublisherCommand:
+  lineagebundle.lineage.LineageDBPublisherCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
@@ -75,13 +75,13 @@ services:
       - '%daipe.root_module%'
       - '%lineagebundle.orchestration.notebook_relpath%'
 
-  lineagebundle.OrchestrationGenerateNotebookCommand:
+  lineagebundle.orchestration.OrchestrationGenerateNotebookCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
       - 'console.command'
 
-  lineagebundle.OrchestrationGenerateNotebookToCommand:
+  lineagebundle.orchestration.OrchestrationGenerateNotebookToCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
