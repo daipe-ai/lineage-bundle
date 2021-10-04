@@ -3,6 +3,10 @@ parameters:
     notebooks:
       layer_pattern: '^%daipe.root_module.name%/{layer}'
       patterns: ['**/*.py']
+    publish:
+      html:
+        path: 'lineage'
+        notebooks_subpath: 'notebooks'
 
 services:
   lineagebundle.notebook.NotebookCreationFacade:
@@ -34,6 +38,8 @@ services:
   lineagebundle.publish.DatabasePublisher:
 
   lineagebundle.publish.PipelinesHTMLParser:
+    arguments:
+      - '%lineagebundle.publish.html.notebooks_subpath%'
 
   lineagebundle.publish.NotebookDetailHTMLParser:
 
@@ -50,6 +56,8 @@ services:
   lineagebundle.LineageHTMLPublisherCommand:
     arguments:
       - '@consolebundle.logger'
+      - '%lineagebundle.publish.html.path%'
+      - '%lineagebundle.publish.html.notebooks_subpath%'
     tags:
       - 'console.command'
 

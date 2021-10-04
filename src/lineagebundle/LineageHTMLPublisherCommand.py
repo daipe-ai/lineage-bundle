@@ -17,14 +17,19 @@ class LineageHTMLPublisherCommand(ConsoleCommand):
     def __init__(
         self,
         logger: Logger,
+        html_path: str,
+        notebooks_subpath: str,
         lineage_generator: LineageGenerator,
         pipelines_html_parser: PipelinesHTMLParser,
         notebook_detail_html_parser: NotebookDetailHTMLParser,
     ):
         self.__logger = logger
+        self.__html_path = Path(html_path)
+        self.__notebooks_subpath = Path(notebooks_subpath)
         self.__lineage_generator = lineage_generator
         self.__pipelines_html_parser = pipelines_html_parser
         self.__notebook_detail_html_parser = notebook_detail_html_parser
+        self.__notebooks_path = self.__html_path.joinpath(self.__notebooks_subpath)
 
     def get_command(self) -> str:
         return "lineage:publish:html"
@@ -42,9 +47,10 @@ class LineageHTMLPublisherCommand(ConsoleCommand):
 
         html = self.__pipelines_html_parser.parse(layers, notebooks, edges)
 
-        Path("lineage/notebooks").mkdir(parents=True, exist_ok=True)
+        self.__notebooks_path.mkdir(parents=True, exist_ok=True)
 
-        with open("lineage/index.html", "w") as file:
+        index_path = self.__html_path.joinpath(Path("index.html"))
+        with index_path.open("w") as file:
             self.__logger.info(f"Writing {file.name}")
             file.write(html)
 
@@ -55,7 +61,7 @@ class LineageHTMLPublisherCommand(ConsoleCommand):
         notebook_functions = list(filter(lambda x: isinstance(x, NotebookFunction) and x.notebook == notebook, entities))
         notebook_functions_relations = list(filter(lambda x: isinstance(x, NotebookFunctionsRelation) and x.notebook == notebook, entities))
 
-        with open(f"lineage/notebooks/{notebook.label.replace('/', '_')}.html", "w") as file:
+        with self.__notebooks_path.joinpath(Path(f"{notebook.label.replace('/', '_')}.html")).open("w") as file:
             html = self.__notebook_detail_html_parser.parse(notebook_functions, notebook_functions_relations)
             self.__logger.info(f"Writing {file.name}")
             file.write(html)
