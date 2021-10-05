@@ -21,7 +21,7 @@ class HTMLCreator:
         self.__notebook_detail_html_parser = notebook_detail_html_parser
 
     def create_pipelines_html_code(self, notebooks: List[Notebook], on_tap_enabled: bool = True):
-        _, edges = self.__lineage_generator.get_notebook_relations(NotebookList(notebooks))
+        edges = self.__lineage_generator.get_notebook_relations(NotebookList(notebooks))
 
         layers = list(set(n.layer for n in notebooks))
 

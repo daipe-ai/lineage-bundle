@@ -91,6 +91,12 @@ services:
     tags:
       - 'console.command'
 
+  lineagebundle.json.LineageJSONPublisherCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
   lineagebundle.pipeline.PipelinesLineageGenerator:
 
   lineagebundle.pipeline.PipelinesGraphPreparer:
