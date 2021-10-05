@@ -1,4 +1,4 @@
- <!DOCTYPE>
+<!DOCTYPE>
 <html>
     <head>
         <title>Lineage</title>
@@ -12,6 +12,7 @@
             body {
                 font-family: helvetica;
                 font-size: 15px;
+                height: 1000px;
             }
 
             #cy {
@@ -161,10 +162,7 @@
                     }
                 });
 
-
-                cy.on('tap', 'node[type = "notebook"]', (e) => {
-                    document.location.href = HREF_PLACEHOLDER
-                });
+                ON_TAP_LISTENER
 
                 cy.makeLayout({
                     name: 'dagre',

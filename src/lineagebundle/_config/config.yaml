@@ -43,6 +43,10 @@ services:
     arguments:
       - '%lineagebundle.publish.html.notebooks_subpath%'
 
+  lineagebundle.publish.HTMLCreator:
+    arguments:
+      - '%lineagebundle.publish.html.notebooks_subpath%'
+
   lineagebundle.publish.NotebookDetailHTMLParser:
 
   lineagebundle.lineage.LineageGenerator:

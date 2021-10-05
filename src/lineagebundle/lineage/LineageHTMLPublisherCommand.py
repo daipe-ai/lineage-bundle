@@ -45,7 +45,7 @@ class LineageHTMLPublisherCommand(ConsoleCommand):
 
         layers = list(set(node.layer for node in notebooks))
 
-        html = self.__pipelines_html_parser.parse(layers, notebooks, edges)
+        html = self.__pipelines_html_parser.parse(layers, notebooks, edges, on_tap_enabled=True)
 
         self.__notebooks_path.mkdir(parents=True, exist_ok=True)
 

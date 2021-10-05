@@ -28,4 +28,4 @@ class OrchestrationGenerateNotebookCommand(ConsoleCommand):
 
         sorted_nodes = topological_sort(graph)
 
-        self.__orchestration_notebook_generator.generate(sorted_nodes)
+        self.__orchestration_notebook_generator.generate(list(sorted_nodes))

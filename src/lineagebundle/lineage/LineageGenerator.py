@@ -1,5 +1,6 @@
 from lineagebundle.notebook.NotebookCreationFacade import NotebookCreationFacade
 from lineagebundle.notebook.NotebookFunctionsLineageGenerator import NotebookFunctionsLineageGenerator
+from lineagebundle.notebook.NotebookList import NotebookList
 from lineagebundle.notebook.NotebooksLocator import NotebooksLocator
 from lineagebundle.pipeline.PipelinesLineageGenerator import PipelinesLineageGenerator
 from logging import Logger
@@ -32,10 +33,13 @@ class LineageGenerator:
     def generate_entities(self) -> List[Base]:
         notebook_list = self.__prepare_notebooks()
 
-        functions_entities = self.__notebook_functions_lineage_generator.generate(notebook_list)
-        pipelines_entities = self.__pipelines_lineage_generator.generate(functions_entities)
+        functions_entities, pipelines_entities = self.get_notebook_relations(notebook_list)
 
         return list(notebook_list) + functions_entities + pipelines_entities
+
+    def get_notebook_relations(self, notebook_list: NotebookList):
+        functions_entities = self.__notebook_functions_lineage_generator.generate(notebook_list)
+        return functions_entities, self.__pipelines_lineage_generator.generate(functions_entities)
 
     def __prepare_notebooks(self):
         notebook_paths = self.__notebooks_locator.locate()
