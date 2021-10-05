@@ -37,7 +37,7 @@ class LineageGenerator:
         notebook_list = self.get_notebooks()
 
         notebook_functions, notebook_function_relations = self.get_notebook_function_relations(notebook_list)
-        notebook_relations = self.get_notebook_relations(notebook_list)
+        notebook_relations, _, _ = self.get_notebook_relations(notebook_list)
 
         return list(notebook_list) + notebook_relations + notebook_functions + notebook_function_relations
 
