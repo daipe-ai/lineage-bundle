@@ -4,6 +4,7 @@ from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFu
 from lineagebundle.pipeline.NotebooksRelation import NotebooksRelation
 from pathlib import Path
 from typing import List, Union
+import minify_html
 
 
 class PipelinesHTMLParser:
@@ -22,9 +23,11 @@ class PipelinesHTMLParser:
         else:
             html = html.replace("ON_TAP_LISTENER", "")
 
-        return html.replace("NODES_PLACEHOLDER", self.__parse_nodes(notebooks) + "," + self.__parse_layers(layers)).replace(
+        html = html.replace("NODES_PLACEHOLDER", self.__parse_nodes(notebooks) + "," + self.__parse_layers(layers)).replace(
             "EDGES_PLACEHOLDER", self.__parse_edges(edges)
         )
+
+        return minify_html.minify(html, minify_js=True, minify_css=True)
 
     def __parse_edges(self, edges: List[Union[NotebooksRelation, NotebookFunctionsRelation]]) -> str:
         def parse(e: Union[NotebooksRelation, NotebookFunctionsRelation]):

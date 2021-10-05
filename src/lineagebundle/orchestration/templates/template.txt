@@ -10,9 +10,10 @@
 
 import datalakebundle.imports as dl
 from pyspark.dbutils import DBUtils
-from PATH_TO_LINEAGE.lineage import lineage
 
-displayHTML(lineage)
+displayHTML("""
+LINEAGE_HTML
+""")
 
 # COMMAND ----------
 

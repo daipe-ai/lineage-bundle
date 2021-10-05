@@ -41,7 +41,7 @@ class OrchestrationNotebookGenerator:
         notebook_code = (
             notebook_code.replace("INSTALL_MASTER_PACKAGE_PATH", install_master_package_path)
             .replace("CELL_CODE", cell_code)
-            .replace("PATH_TO_LINEAGE", f"{self.__root_module_name}.{self.__orchestration_notebook_relpath.parent}")
+            .replace("LINEAGE_HTML", self.__html_creator.create_pipelines_html_code(sorted_nodes, on_tap_enabled=False))
         )
 
         self.__orchestration_notebook_path.parent.mkdir(parents=True, exist_ok=True)
@@ -49,13 +49,3 @@ class OrchestrationNotebookGenerator:
         with self.__orchestration_notebook_path.open("w") as orchestration_notebook:
             self.__logger.info(f"Writing {orchestration_notebook.name}")
             orchestration_notebook.write(notebook_code)
-
-        self.__generate_html_file(sorted_nodes)
-
-    def __generate_html_file(self, sorted_nodes: List[Notebook]):
-        html_python_file_path = self.__orchestration_notebook_path.parent.joinpath("lineage.py")
-        html_code = f'lineage = """{self.__html_creator.create_pipelines_html_code(sorted_nodes, on_tap_enabled=False)}"""'
-
-        with html_python_file_path.open("w") as html_python_file:
-            self.__logger.info(f"Writing {html_python_file.name}")
-            html_python_file.write(html_code)
