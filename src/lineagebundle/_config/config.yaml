@@ -97,6 +97,12 @@ services:
     tags:
       - 'console.command'
 
+  lineagebundle.image.LineageImagePublisherCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
   lineagebundle.pipeline.PipelinesLineageGenerator:
 
   lineagebundle.pipeline.PipelinesGraphPreparer:
