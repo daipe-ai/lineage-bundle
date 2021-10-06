@@ -37,29 +37,29 @@ services:
     arguments:
       - '%daipe.root_module.path%'
 
-  lineagebundle.publish.DatabasePublisher:
+  lineagebundle.database.DatabasePublisher:
 
-  lineagebundle.publish.PipelinesHTMLParser:
+  lineagebundle.html.PipelinesHTMLParser:
     arguments:
       - '%lineagebundle.publish.html.notebooks_subpath%'
 
-  lineagebundle.publish.HTMLCreator:
+  lineagebundle.html.HTMLCreator:
     arguments:
       - '%lineagebundle.publish.html.notebooks_subpath%'
 
-  lineagebundle.publish.NotebookDetailHTMLParser:
+  lineagebundle.html.NotebookDetailHTMLParser:
 
   lineagebundle.lineage.LineageGenerator:
     arguments:
       - '@consolebundle.logger'
 
-  lineagebundle.lineage.LineageDatabaseInitCommand:
+  lineagebundle.database.LineageDatabaseInitCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
       - 'console.command'
 
-  lineagebundle.lineage.LineageHTMLPublisherCommand:
+  lineagebundle.html.LineageHTMLPublisherCommand:
     arguments:
       - '@consolebundle.logger'
       - '%lineagebundle.publish.html.path%'
@@ -67,7 +67,7 @@ services:
     tags:
       - 'console.command'
 
-  lineagebundle.lineage.LineageDBPublisherCommand:
+  lineagebundle.database.LineageDatabasePublisherCommand:
     arguments:
       - '@consolebundle.logger'
     tags:

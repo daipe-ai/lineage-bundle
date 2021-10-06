@@ -1,10 +1,10 @@
 from consolebundle.ConsoleCommand import ConsoleCommand
 
-from lineagebundle.publish.DatabasePublisher import DatabasePublisher
+from lineagebundle.database.DatabasePublisher import DatabasePublisher
 from logging import Logger
 
 
-class LineageDBPublisherCommand(ConsoleCommand):
+class LineageDatabasePublisherCommand(ConsoleCommand):
     def __init__(
         self,
         logger: Logger,

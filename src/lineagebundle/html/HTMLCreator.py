@@ -1,7 +1,7 @@
 from lineagebundle.lineage.LineageGenerator import LineageGenerator
 from lineagebundle.notebook.Notebook import Notebook
-from lineagebundle.publish.NotebookDetailHTMLParser import NotebookDetailHTMLParser
-from lineagebundle.publish.PipelinesHTMLParser import PipelinesHTMLParser
+from lineagebundle.html.NotebookDetailHTMLParser import NotebookDetailHTMLParser
+from lineagebundle.html.PipelinesHTMLParser import PipelinesHTMLParser
 from pathlib import Path
 from typing import List
 

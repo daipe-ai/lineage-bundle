@@ -34,9 +34,10 @@ class OrchestrationGenerateNotebookToCommand(ConsoleCommand):
         graph = self.__lineage_generator.pipelines_graph
 
         filtered_nodes = filter(lambda notebook: notebook.label == input_args.label, graph.nodes)
-        if not filtered_nodes:
+        try:
+            target_node = next(filtered_nodes)
+        except StopIteration:
             raise Exception(f"No such notebook: {input_args.label}")
-        target_node = next(filtered_nodes)
 
         sorted_notebooks = topological_sort(graph)
 

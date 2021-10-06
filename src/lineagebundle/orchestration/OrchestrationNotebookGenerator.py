@@ -1,7 +1,7 @@
 import os
 from box import Box
 from lineagebundle.notebook.Notebook import Notebook
-from lineagebundle.publish.HTMLCreator import HTMLCreator
+from lineagebundle.html.HTMLCreator import HTMLCreator
 from logging import Logger
 from pathlib import Path
 from typing import List
