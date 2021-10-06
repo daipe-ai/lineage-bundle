@@ -24,7 +24,7 @@ class OrchestrationGenerateNotebookCommand(ConsoleCommand):
 
     def run(self, _):
         self.__logger.info("Generating orchestration notebook...")
-        graph = self.__lineage_generator.get_pipelines_graph()
+        graph = self.__lineage_generator.pipelines_graph
 
         sorted_nodes = topological_sort(graph)
 

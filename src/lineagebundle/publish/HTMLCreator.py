@@ -1,6 +1,5 @@
 from lineagebundle.lineage.LineageGenerator import LineageGenerator
 from lineagebundle.notebook.Notebook import Notebook
-from lineagebundle.notebook.NotebookList import NotebookList
 from lineagebundle.publish.NotebookDetailHTMLParser import NotebookDetailHTMLParser
 from lineagebundle.publish.PipelinesHTMLParser import PipelinesHTMLParser
 from pathlib import Path
@@ -21,7 +20,7 @@ class HTMLCreator:
         self.__notebook_detail_html_parser = notebook_detail_html_parser
 
     def create_pipelines_html_code(self, notebooks: List[Notebook], on_tap_enabled: bool = True):
-        edges, _, _ = self.__lineage_generator.get_notebook_relations(NotebookList(notebooks))
+        edges = self.__lineage_generator.notebooks_relations
 
         layers = list(set(n.layer for n in notebooks))
 

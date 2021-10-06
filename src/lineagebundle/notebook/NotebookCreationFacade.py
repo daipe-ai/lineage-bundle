@@ -1,8 +1,7 @@
-from pathlib import Path
-from typing import List
 from lineagebundle.notebook.LayerResolver import LayerResolver
 from lineagebundle.notebook.Notebook import Notebook
-from lineagebundle.notebook.NotebookList import NotebookList
+from pathlib import Path
+from typing import List
 
 
 class NotebookCreationFacade:
@@ -12,10 +11,8 @@ class NotebookCreationFacade:
     ):
         self.__layer_resolver = layer_resolver
 
-    def create(self, notebook_paths: List[Path]) -> NotebookList:
-        notebooks = [self.__create_notebook(notebook_path) for notebook_path in notebook_paths]
-
-        return NotebookList(notebooks)
+    def create(self, notebook_paths: List[Path]) -> List[Notebook]:
+        return [self.__create_notebook(notebook_path) for notebook_path in notebook_paths]
 
     def __create_notebook(self, notebook_path: Path) -> Notebook:
         notebook_path_str = str(notebook_path.as_posix())

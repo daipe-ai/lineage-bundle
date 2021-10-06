@@ -1,5 +1,4 @@
 import json
-from argparse import Namespace
 from consolebundle.ConsoleCommand import ConsoleCommand
 from lineagebundle.lineage.LineageGenerator import LineageGenerator
 from logging import Logger
@@ -21,9 +20,11 @@ class LineageJSONPublisherCommand(ConsoleCommand):
     def get_description(self):
         return "Creates lineage as a JSON"
 
-    def run(self, input_args: Namespace):
-        notebooks = self.__lineage_generator.get_notebooks()
-        notebook_relations, notebook_functions, notebook_function_relations = self.__lineage_generator.get_notebook_relations(notebooks)
+    def run(self, _):
+        notebooks = self.__lineage_generator.notebooks
+        notebook_relations = self.__lineage_generator.notebooks_relations
+        notebook_functions = self.__lineage_generator.notebook_functions
+        notebook_function_relations = self.__lineage_generator.notebook_functions_relations
 
         dictionary = {
             "notebooks": [{"label": notebook.label, "path": notebook.path, "layer": notebook.layer} for notebook in notebooks],

@@ -31,7 +31,7 @@ class OrchestrationGenerateNotebookToCommand(ConsoleCommand):
 
     def run(self, input_args: Namespace):
         self.__logger.info("Generating orchestration notebook...")
-        graph = self.__lineage_generator.get_pipelines_graph()
+        graph = self.__lineage_generator.pipelines_graph
 
         filtered_nodes = filter(lambda notebook: notebook.label == input_args.label, graph.nodes)
         if not filtered_nodes:
