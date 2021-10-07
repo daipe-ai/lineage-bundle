@@ -3,6 +3,7 @@ parameters:
     notebooks:
       layer_pattern: '^%daipe.root_module.name%/{layer}'
       patterns: ['**/*.py']
+      path: '%daipe.root_module.path%'
     publish:
       html:
         path: 'lineage'
@@ -17,8 +18,7 @@ services:
 
   lineagebundle.notebook.NotebooksLocator:
     arguments:
-      - '%daipe.root_module.path%'
-      - '%lineagebundle.notebooks.patterns%'
+      - '%lineagebundle.notebooks%'
       - '@consolebundle.logger'
 
   lineagebundle.notebook.LayerResolver:
