@@ -1,10 +1,10 @@
 import os
+import sys
 from lineagebundle.notebook.Notebook import Notebook
 from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFunctionsRelation
 from lineagebundle.pipeline.NotebooksRelation import NotebooksRelation
 from pathlib import Path
 from typing import List, Union
-import minify_html
 
 
 class PipelinesHTMLParser:
@@ -27,7 +27,12 @@ class PipelinesHTMLParser:
             "EDGES_PLACEHOLDER", self.__parse_edges(edges)
         )
 
-        return minify_html.minify(html, minify_js=True, minify_css=True)
+        if "minify_html" in sys.modules:
+            import minify_html
+
+            return minify_html.minify(html, minify_js=True, minify_css=True)
+
+        return html
 
     def __parse_edges(self, edges: List[Union[NotebooksRelation, NotebookFunctionsRelation]]) -> str:
         def parse(e: Union[NotebooksRelation, NotebookFunctionsRelation]):
