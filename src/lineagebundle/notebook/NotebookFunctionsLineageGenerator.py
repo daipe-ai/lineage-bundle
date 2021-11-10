@@ -1,10 +1,9 @@
-from lineagebundle.notebook.NotebookList import NotebookList
+from lineagebundle.notebook.Notebook import Notebook
 from lineagebundle.notebook.dag.DagCreator import DagCreator
-
-from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFunctionsRelation
 from lineagebundle.notebook.function.NotebookFunction import NotebookFunction
+from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFunctionsRelation
 from pathlib import Path
-from typing import List, Union
+from typing import Tuple, List
 
 
 class NotebookFunctionsLineageGenerator:
@@ -16,27 +15,28 @@ class NotebookFunctionsLineageGenerator:
         self.__root_module_path = Path(root_module_path)
         self.__dag_creator = dag_creator
 
-    def generate(self, notebook_list: NotebookList) -> List[Union[NotebookFunction, NotebookFunctionsRelation]]:
-        notebooks_with_nodes, notebooks_with_edges = self.__get_notebooks_lineage(notebook_list)
-        entities = []
+    def generate(self, notebooks: List[Notebook]) -> Tuple[NotebookFunction, NotebookFunctionsRelation]:
+        notebooks_with_nodes, notebooks_with_edges = self.__get_notebooks_lineage(notebooks)
 
+        notebook_functions = []
         for notebook_with_nodes in notebooks_with_nodes:
             for node in notebook_with_nodes["nodes"]:
                 parsed_node = NotebookFunction(node.name, notebook_with_nodes["notebook"], node.input_tables, node.output_table)
-                entities.append(parsed_node)
+                notebook_functions.append(parsed_node)
 
+        notebook_function_relations = []
         for notebook_with_edges in notebooks_with_edges:
             for edge in notebook_with_edges["edges"]:
                 parsed_edge = NotebookFunctionsRelation(notebook_with_edges["notebook"], edge.source, edge.target)
-                entities.append(parsed_edge)
+                notebook_function_relations.append(parsed_edge)
 
-        return entities
+        return notebook_functions, notebook_function_relations
 
-    def __get_notebooks_lineage(self, notebook_list: NotebookList):
+    def __get_notebooks_lineage(self, notebooks: List[Notebook]):
         notebooks_with_nodes = []
         notebooks_with_edges = []
 
-        for notebook in notebook_list:
+        for notebook in notebooks:
             notebook_path = self.__root_module_path.parent.joinpath(notebook.path)
             nodes, edges = self.__dag_creator.create(notebook_path)
 

@@ -3,6 +3,13 @@ parameters:
     notebooks:
       layer_pattern: '^%daipe.root_module.name%/{layer}'
       patterns: ['**/*.py']
+      path: '%daipe.root_module.path%'
+    publish:
+      html:
+        path: 'lineage'
+        notebooks_subpath: 'notebooks'
+    orchestration:
+      notebook_relpath: 'orchestration/orchestration_notebook.py'
 
 services:
   lineagebundle.notebook.NotebookCreationFacade:
@@ -11,8 +18,7 @@ services:
 
   lineagebundle.notebook.NotebooksLocator:
     arguments:
-      - '%daipe.root_module.path%'
-      - '%lineagebundle.notebooks.patterns%'
+      - '%lineagebundle.notebooks%'
       - '@consolebundle.logger'
 
   lineagebundle.notebook.LayerResolver:
@@ -31,29 +37,67 @@ services:
     arguments:
       - '%daipe.root_module.path%'
 
-  lineagebundle.publish.DatabasePublisher:
+  lineagebundle.database.DatabasePublisher:
 
-  lineagebundle.publish.PipelinesHTMLParser:
+  lineagebundle.html.PipelinesHTMLParser:
+    arguments:
+      - '%lineagebundle.publish.html.notebooks_subpath%'
 
-  lineagebundle.publish.NotebookDetailHTMLParser:
+  lineagebundle.html.HTMLCreator:
+    arguments:
+      - '%lineagebundle.publish.html.notebooks_subpath%'
 
-  lineagebundle.LineageGenerator:
+  lineagebundle.html.NotebookDetailHTMLParser:
+
+  lineagebundle.lineage.LineageGenerator:
     arguments:
       - '@consolebundle.logger'
 
-  lineagebundle.LineageDatabaseInitCommand:
+  lineagebundle.database.LineageDatabaseInitCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
       - 'console.command'
 
-  lineagebundle.LineageHTMLPublisherCommand:
+  lineagebundle.html.LineageHTMLPublisherCommand:
+    arguments:
+      - '@consolebundle.logger'
+      - '%lineagebundle.publish.html.path%'
+      - '%lineagebundle.publish.html.notebooks_subpath%'
+    tags:
+      - 'console.command'
+
+  lineagebundle.database.LineageDatabasePublisherCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
       - 'console.command'
 
-  lineagebundle.LineageDBPublisherCommand:
+  lineagebundle.orchestration.OrchestrationNotebookGenerator:
+    arguments:
+      - '@consolebundle.logger'
+      - '%daipe.root_module%'
+      - '%lineagebundle.orchestration.notebook_relpath%'
+
+  lineagebundle.orchestration.OrchestrationGenerateNotebookCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
+  lineagebundle.orchestration.OrchestrationGenerateNotebookToCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
+  lineagebundle.json.LineageJSONPublisherCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
+  lineagebundle.image.LineageImagePublisherCommand:
     arguments:
       - '@consolebundle.logger'
     tags:
@@ -61,4 +105,4 @@ services:
 
   lineagebundle.pipeline.PipelinesLineageGenerator:
 
-  lineagebundle.pipeline.PipelinesEdgesPreparer:
+  lineagebundle.pipeline.PipelinesGraphPreparer:

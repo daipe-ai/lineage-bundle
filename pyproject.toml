@@ -42,6 +42,7 @@ poethepoet = "^0.10.0"
 pyfony-core = "0.8.*"
 datalake-bundle = "^1.0"
 pyspark = "^3"
+minify-html = "^0.6.8"
 
 [tool.poetry.plugins."pyfony.bundle"]
 create = "lineagebundle.LineageBundle:LineageBundle"

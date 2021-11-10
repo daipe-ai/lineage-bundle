@@ -1,3 +1,4 @@
+from box import Box
 from logging import Logger
 from pathlib import Path
 
@@ -5,12 +6,11 @@ from pathlib import Path
 class NotebooksLocator:
     def __init__(
         self,
-        project_base_dir: str,
-        paths_patterns: list,
+        notebooks_config: Box,
         logger: Logger,
     ):
-        self.__project_base_dir = Path(project_base_dir)
-        self.__paths_patterns = paths_patterns
+        self.__project_base_dir = Path(notebooks_config.path)
+        self.__paths_patterns = notebooks_config.patterns
         self.__logger = logger
 
     def locate(self):
