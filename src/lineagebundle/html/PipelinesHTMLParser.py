@@ -1,14 +1,15 @@
 import os
-import sys
 from lineagebundle.notebook.Notebook import Notebook
 from lineagebundle.notebook.function.NotebookFunctionsRelation import NotebookFunctionsRelation
 from lineagebundle.pipeline.NotebooksRelation import NotebooksRelation
+from logging import Logger
 from pathlib import Path
 from typing import List, Union
 
 
 class PipelinesHTMLParser:
-    def __init__(self, notebooks_subpath: str):
+    def __init__(self, logger: Logger, notebooks_subpath: str):
+        self.__logger = logger
         self.__notebooks_subpath = Path(notebooks_subpath)
 
     def parse(self, layers: List[str], notebooks: List[Notebook], edges: List[NotebooksRelation], on_tap_enabled: bool) -> str:
@@ -27,12 +28,14 @@ class PipelinesHTMLParser:
             "EDGES_PLACEHOLDER", self.__parse_edges(edges)
         )
 
-        if "minify_html" in sys.modules:
-            import minify_html
+        try:
+            from minify_html import minify
 
-            return minify_html.minify(html, minify_js=True, minify_css=True)
-
-        return html
+            self.__logger.info("minify_html is installed. Writing minified html code.")
+            return minify(html, minify_css=True, minify_js=True)
+        except ImportError:
+            self.__logger.info("minify_html is NOT installed. Writing non minified html code.")
+            return html
 
     def __parse_edges(self, edges: List[Union[NotebooksRelation, NotebookFunctionsRelation]]) -> str:
         def parse(e: Union[NotebooksRelation, NotebookFunctionsRelation]):

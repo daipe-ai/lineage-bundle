@@ -41,6 +41,7 @@ services:
 
   lineagebundle.html.PipelinesHTMLParser:
     arguments:
+      - '@consolebundle.logger'
       - '%lineagebundle.publish.html.notebooks_subpath%'
 
   lineagebundle.html.HTMLCreator:
