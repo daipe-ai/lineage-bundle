@@ -48,6 +48,6 @@ class LineageJSONPublisherCommand(ConsoleCommand):
         json_path = Path("lineage")
         json_path.mkdir(parents=True, exist_ok=True)
 
-        with json_path.joinpath(Path("lineage.json")).open("w") as json_file:
+        with json_path.joinpath(Path("lineage.json")).open("w", encoding="utf-8") as json_file:
             self.__logger.info(f"Writing {json_file.name}")
             json.dump(dictionary, json_file)

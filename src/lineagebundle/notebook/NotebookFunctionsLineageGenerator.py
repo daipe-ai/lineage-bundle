@@ -15,7 +15,7 @@ class NotebookFunctionsLineageGenerator:
         self.__root_module_path = Path(root_module_path)
         self.__dag_creator = dag_creator
 
-    def generate(self, notebooks: List[Notebook]) -> Tuple[NotebookFunction, NotebookFunctionsRelation]:
+    def generate(self, notebooks: List[Notebook]) -> Tuple[List[NotebookFunction], List[NotebookFunctionsRelation]]:
         notebooks_with_nodes, notebooks_with_edges = self.__get_notebooks_lineage(notebooks)
 
         notebook_functions = []
@@ -24,7 +24,7 @@ class NotebookFunctionsLineageGenerator:
                 parsed_node = NotebookFunction(node.name, notebook_with_nodes["notebook"], node.input_tables, node.output_table)
                 notebook_functions.append(parsed_node)
 
-        notebook_function_relations = []
+        notebook_function_relations: List[NotebookFunctionsRelation] = []
         for notebook_with_edges in notebooks_with_edges:
             for edge in notebook_with_edges["edges"]:
                 parsed_edge = NotebookFunctionsRelation(notebook_with_edges["notebook"], edge.source, edge.target)

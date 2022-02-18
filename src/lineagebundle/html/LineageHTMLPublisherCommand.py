@@ -43,7 +43,7 @@ class LineageHTMLPublisherCommand(ConsoleCommand):
         self.__notebooks_path.mkdir(parents=True, exist_ok=True)
 
         index_path = self.__html_path.joinpath(Path("index.html"))
-        with index_path.open("w") as file:
+        with index_path.open("w", encoding="utf-8") as file:
             self.__logger.info(f"Writing {file.name}")
             file.write(html)
 
@@ -56,7 +56,7 @@ class LineageHTMLPublisherCommand(ConsoleCommand):
             filter(lambda relation: relation.notebook == notebook, self.__lineage_generator.notebook_functions_relations)
         )
 
-        with self.__notebooks_path.joinpath(Path(f"{notebook.label.replace('/', '_')}.html")).open("w") as file:
+        with self.__notebooks_path.joinpath(Path(f"{notebook.label.replace('/', '_')}.html")).open("w", encoding="utf-8") as file:
             html = self.__notebook_detail_html_parser.parse(notebook_functions, notebook_functions_relations)
             self.__logger.info(f"Writing {file.name}")
             file.write(html)

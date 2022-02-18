@@ -43,7 +43,7 @@ class LineageGenerator:
         return self.__pipelines_lineage_generator.generate(self.notebook_functions)
 
     @cached_property
-    def notebook_functions_and_relations(self) -> Tuple[NotebookFunction, NotebookFunctionsRelation]:
+    def notebook_functions_and_relations(self) -> Tuple[List[NotebookFunction], List[NotebookFunctionsRelation]]:
         return self.__notebook_functions_lineage_generator.generate(self.notebooks)
 
     @cached_property

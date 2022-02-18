@@ -19,7 +19,7 @@ class PipelinesGraphPreparer:
         return graph
 
     def __get_unique_nodes(self, nodes_with_tables):
-        notebooks2tables = dict()
+        notebooks2tables = {}
 
         for node_with_table in nodes_with_tables:
             if node_with_table.notebook.path not in notebooks2tables:
