@@ -18,7 +18,12 @@ class NotebooksLocator:
             with path.open("r", encoding="utf-8") as f:
                 content = f.read()
 
-                return "@transformation(" in content or "@notebook_function(" in content
+                return (
+                    "@transformation(" in content
+                    or "@notebook_function(" in content
+                    or "@dp.transformation(" in content
+                    or "@dp.notebook_function(" in content
+                )
 
         def create_notebook(path: Path):
             self.__logger.debug(f"Reading {path}")
