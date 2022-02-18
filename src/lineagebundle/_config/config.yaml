@@ -45,8 +45,6 @@ services:
       - '%lineagebundle.publish.html.notebooks_subpath%'
 
   lineagebundle.html.HTMLCreator:
-    arguments:
-      - '%lineagebundle.publish.html.notebooks_subpath%'
 
   lineagebundle.html.NotebookDetailHTMLParser:
 
@@ -99,8 +97,6 @@ services:
       - 'console.command'
 
   lineagebundle.image.LineageImagePublisherCommand:
-    arguments:
-      - '@consolebundle.logger'
     tags:
       - 'console.command'
 

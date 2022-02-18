@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Union
 from uuid import uuid4
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.sql.schema import Column
@@ -9,14 +10,14 @@ from sqlalchemybundle.entity.Base import Base
 class Notebook(Base):
     __tablename__ = "notebook"
 
-    id = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid4)
-    label = Column(String(300), nullable=False)
-    path = Column(String(500), nullable=False)
-    layer = Column(String(100), nullable=False)
-    created_at = Column(DateTime(), nullable=False)
-    deleted_at = Column(DateTime(), nullable=True)
+    id: Union[Column, str] = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid4)
+    label: Union[Column, str] = Column(String(300), nullable=False)
+    path: Union[Column, str] = Column(String(500), nullable=False)
+    layer: Union[Column, str] = Column(String(100), nullable=False)
+    created_at: Union[Column, datetime] = Column(DateTime(), nullable=False)
+    deleted_at: Union[Column, datetime] = Column(DateTime(), nullable=True)
 
-    def __init__(self, label: str, path: str, layer: str, created_at: DateTime = datetime.now()):
+    def __init__(self, label: str, path: str, layer: str, created_at: datetime = datetime.now()):
         self.label = label
         self.path = path
         self.layer = layer

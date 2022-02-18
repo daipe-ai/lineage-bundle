@@ -12,11 +12,11 @@ class FunctionCollector(ast.NodeVisitor):
     def results(self):
         return self.__results
 
-    def visit_FunctionDef(self, node: ast.FunctionDef):  # noqa: N802
+    def visit_FunctionDef(self, node: ast.FunctionDef):  # pylint: disable = invalid-name
         if (
             not hasattr(node, "decorator_list")
             or not node.decorator_list
-            or not [decorator for decorator in node.decorator_list if hasattr(decorator.func, "id")]
+            or not [decorator for decorator in node.decorator_list if hasattr(decorator.func, "id")]  # pyre-ignore[16]:
         ):
             return
 

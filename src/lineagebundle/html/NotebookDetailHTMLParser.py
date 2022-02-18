@@ -7,7 +7,7 @@ from typing import List
 class NotebookDetailHTMLParser:
     def parse(self, notebook_functions: List[NotebookFunction], notebook_functions_relations: List[NotebookFunctionsRelation]) -> str:
         template_path = os.path.join(os.path.dirname(__file__), "templates/template.html")
-        with open(template_path) as html_file:
+        with open(template_path, encoding="utf-8") as html_file:
             html = html_file.read()
 
         return html.replace("NODES_PLACEHOLDER", self.__parse_notebook_functions(notebook_functions)).replace(

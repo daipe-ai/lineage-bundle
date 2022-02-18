@@ -35,7 +35,7 @@ class OrchestrationNotebookGenerator:
 
         template_path = os.path.join(os.path.dirname(__file__), "templates/template.txt")
 
-        with open(template_path) as file:
+        with open(template_path, encoding="utf-8") as file:
             notebook_code = file.read()
 
         notebook_code = (
@@ -46,6 +46,6 @@ class OrchestrationNotebookGenerator:
 
         self.__orchestration_notebook_path.parent.mkdir(parents=True, exist_ok=True)
 
-        with self.__orchestration_notebook_path.open("w") as orchestration_notebook:
+        with self.__orchestration_notebook_path.open("w", encoding="utf-8") as orchestration_notebook:
             self.__logger.info(f"Writing {orchestration_notebook.name}")
             orchestration_notebook.write(notebook_code)

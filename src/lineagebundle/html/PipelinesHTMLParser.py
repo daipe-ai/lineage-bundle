@@ -12,9 +12,15 @@ class PipelinesHTMLParser:
         self.__logger = logger
         self.__notebooks_subpath = Path(notebooks_subpath)
 
-    def parse(self, layers: List[str], notebooks: List[Notebook], edges: List[NotebooksRelation], on_tap_enabled: bool) -> str:
+    def parse(
+        self,
+        layers: List[str],
+        notebooks: List[Notebook],
+        edges: List[Union[NotebooksRelation, NotebookFunctionsRelation]],
+        on_tap_enabled: bool,
+    ) -> str:
         template_path = os.path.join(os.path.dirname(__file__), "templates/template.html")
-        with open(template_path) as html_file:
+        with open(template_path, encoding="utf-8") as html_file:
             html = html_file.read()
 
         if on_tap_enabled:
@@ -29,7 +35,7 @@ class PipelinesHTMLParser:
         )
 
         try:
-            from minify_html import minify
+            from minify_html import minify  # pylint: disable = import-outside-toplevel # pyre-ignore[21]
 
             self.__logger.info("minify_html is installed. Writing minified html code.")
             return minify(html, minify_css=True, minify_js=True)
